@@ -17,6 +17,9 @@ stdenv.mkDerivation {
     createAndLink() {
       prefix=$1
       folder=$2
+      if [[ -e "$folder" && ! -L "$folder" ]]; then
+        rm -r "$folder"
+      fi
       if [[ ! -d "$folder" ]]; then
         mkdir -p "$prefix/$folder"
         ln --symbolic "$prefix/$folder" .

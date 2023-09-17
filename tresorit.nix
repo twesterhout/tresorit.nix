@@ -9,12 +9,12 @@
 
 stdenv.mkDerivation rec {
 
-  version = "3.5.1159.3770";
+  version = "3.5.1173.3850";
   name = "tresorit-${version}";
 
   src = fetchurl {
     url = "https://installerstorage.blob.core.windows.net/public/install/tresorit_installer.run";
-    hash = "sha256-8aT1cy8ovMfuFEstw2SHSQbDXixkeRTgjG8ROti6dao=";
+    hash = "sha256-K2JLTBHCHn8jU8gUpYVy1LjvvhJjcsaTjTh+iE17fSc=";
   };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
@@ -36,6 +36,6 @@ stdenv.mkDerivation rec {
     homepage = "https://tresorit.com";
     license = licenses.unfree;
     platforms = platforms.linux;
-    maintainers = with maintainers; [ apeyroux ];
+    maintainers = with maintainers; [ apeyroux twesterhout ];
   };
 }
