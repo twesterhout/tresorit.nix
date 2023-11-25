@@ -9,12 +9,12 @@
 
 stdenv.mkDerivation rec {
 
-  version = "3.5.1177.3880";
+  version = "3.5.1192.4010";
   name = "tresorit-${version}";
 
   src = fetchurl {
     url = "https://installerstorage.blob.core.windows.net/public/install/tresorit_installer.run";
-    hash = "sha256-RtuupJqp1eb77hcK4chLFhjIVDZ3RhbtI2b3vQ2TtTU=";
+    hash = "sha256-/gJGSr0T/VC83RN4jQP5bI+gpYGrppvhi2qUXFbqGAM=";
   };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
