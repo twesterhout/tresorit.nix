@@ -9,19 +9,19 @@
 
 stdenv.mkDerivation rec {
 
-  version = "3.5.1192.4010";
+  version = "3.5.1200.4060";
   name = "tresorit-${version}";
 
   src = fetchurl {
     url = "https://installerstorage.blob.core.windows.net/public/install/tresorit_installer.run";
-    hash = "sha256-/gJGSr0T/VC83RN4jQP5bI+gpYGrppvhi2qUXFbqGAM=";
+    hash = "sha256-Ph4jFGig2sTLMY/BohqWAfeoiUuzfB4t4Hf8QiayYe0=";
   };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
   buildInputs = [ gcc-unwrapped.libgcc fuse ];
 
   unpackPhase = ''
-    head -n92 $src
+    # head -n92 $src
     tail -n+93 $src | tar xz -C $TMP
   '';
 

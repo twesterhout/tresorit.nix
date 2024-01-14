@@ -4,6 +4,7 @@
 , tresorit
 , stdenv
 , writeShellScript
+, jq
 }:
 
 stdenv.mkDerivation {
@@ -53,7 +54,18 @@ stdenv.mkDerivation {
   '';
 
   installPhase = ''
+    # Determine the Tresorit version
+    cp ${tresorit}/share/* .
+    ./tresorit-cli status &>/dev/null
+    tresorit_version=$(cat Logs/*.log | jq '.[0].Version' | sed -E 's:.*Tresorit/([^ ]+) .*:\1:')
+    if [[ $tresorit_version != ${tresorit.version} ]]; then
+      echo "Error: wrong tresorit version: ${tresorit.version}; should be $tresorit_version"
+      exit 1
+    fi
+
     mkdir -p $out/bin
     install -m 755 $src $out/bin/tresorit-cli
   '';
+
+  nativeBuildInputs = [ jq ];
 }
